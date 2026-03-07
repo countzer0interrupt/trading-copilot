@@ -1,0 +1,7 @@
+trading-copilot/
+├── index.html
+├── package.json
+├── vite.config.js
+├── staticwebapp.config.json
+└── src/
+    └── App.jsx
