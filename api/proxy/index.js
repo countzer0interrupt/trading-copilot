@@ -5,6 +5,7 @@ app.http("proxy", {
   authLevel: "anonymous",
   route: "proxy",
   handler: async (request, context) => {
+    context.log("Proxy request received");
     // Handle CORS preflight
     if (request.method === "OPTIONS") {
       return {
@@ -37,7 +38,7 @@ app.http("proxy", {
           "anthropic-version": "2023-06-01",
           "anthropic-beta": "mcp-client-2025-04-04",
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify({ ...body, max_tokens: 1000 }),
       });
 
       const data = await response.json();
