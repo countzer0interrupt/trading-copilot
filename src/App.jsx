@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const MCP_SERVER = {
+const PROXY_URL = "https://trading-copilot-api-cjfaa8debddtdfar.eastus-01.azurewebsites.net/api/proxy";
   type: "url",
   url: "https://bcmcp.freewheel.com",
   name: "BWFW",
@@ -119,7 +119,7 @@ const GlobalStyle = () => (
 async function callClaude(messages, systemSuffix = "") {
   // Keep only last 6 messages to prevent context bloat from MCP tool results
   const trimmedMessages = messages.slice(-6);
-  const res = await fetch("/api/proxy", {
+  const res = await fetch(PROXY_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
