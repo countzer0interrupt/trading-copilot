@@ -1,3 +1,4 @@
+
 const { app } = require("@azure/functions");
 
 app.http("proxy", {
@@ -5,7 +6,6 @@ app.http("proxy", {
   authLevel: "anonymous",
   route: "proxy",
   handler: async (request, context) => {
-    context.log("Proxy request received");
     // Handle CORS preflight
     if (request.method === "OPTIONS") {
       return {
@@ -38,7 +38,7 @@ app.http("proxy", {
           "anthropic-version": "2023-06-01",
           "anthropic-beta": "mcp-client-2025-04-04",
         },
-        body: JSON.stringify({ ...body, max_tokens: 1000 }),
+        body: JSON.stringify(body),
       });
 
       const data = await response.json();
@@ -52,7 +52,6 @@ app.http("proxy", {
         },
       };
     } catch (err) {
-      context.log("Proxy error:", err);
       return {
         status: 500,
         body: JSON.stringify({ error: err.message }),
