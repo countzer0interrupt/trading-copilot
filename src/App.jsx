@@ -1,6 +1,47 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const MCP_SERVER = { type: "url", url: "https://bcmcp.freewheel.com", name: "BWFW" };
+const MCP_SERVER = {
+  type: "url",
+  url: "https://bcmcp.freewheel.com",
+  name: "BWFW",
+  tool_configuration: {
+    enabled: true,
+    allowed_tools: [
+      "buyer_cloud_login_encrypted",
+      "buyer_cloud_logout",
+      "v2_get_campaigns",
+      "v2_get_campaigns_id",
+      "v2_get_campaigns_id_metrics",
+      "v2_get_line_items",
+      "v2_get_line_items_id",
+      "v2_get_line_items_id_metrics",
+      "v2_get_line_items_id_notifications",
+      "v2_get_advertisers",
+      "v2_get_advertisers_id",
+      "v2_get_deals",
+      "v2_get_deals_id",
+      "v2_get_creatives",
+      "v2_get_creatives_id",
+      "v2_get_bid_modifiers",
+      "v2_get_bid_modifiers_id",
+      "v2_get_delivery_modifiers",
+      "v2_get_delivery_modifiers_id",
+      "v2_get_targeting_expressions",
+      "v2_get_targeting_expressions_id",
+      "v2_get_reporting_saved_reports",
+      "v2_get_reporting_saved_reports_id",
+      "v2_get_reporting_async_results_id",
+      "v2_get_segments",
+      "v2_get_segment",
+      "bidstream_analyzer",
+      "deal_analyst",
+      "check_campaign_health",
+      "commitment_analyst",
+      "ssp_analyzer",
+      "quality_evaluator"
+    ]
+  }
+};
 
 const SYSTEM_PROMPT = `You are a programmatic trading copilot for a digital advertising DSP (Demand-Side Platform) called FreeWheel/Beeswax.
 
