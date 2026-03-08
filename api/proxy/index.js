@@ -30,18 +30,36 @@ app.http("proxy", {
         };
       }
 
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": apiKey,
-          "anthropic-version": "2023-06-01",
-          "anthropic-beta": "mcp-client-2025-04-04,prompt-caching-2024-07-31",
-        },
-        body: JSON.stringify(body),
-      });
+      let response;
+      try {
+        response = await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": apiKey,
+            "anthropic-version": "2023-06-01",
+            "anthropic-beta": "mcp-client-2025-04-04,prompt-caching-2024-07-31",
+          },
+          body: JSON.stringify(body),
+        });
+      } catch (fetchErr) {
+        return {
+          status: 500,
+          body: JSON.stringify({ error: "Fetch failed", detail: fetchErr.message }),
+          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        };
+      }
 
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch (jsonErr) {
+        return {
+          status: 500,
+          body: JSON.stringify({ error: "JSON parse failed", status: response.status }),
+          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        };
+      }
 
       return {
         status: response.status,
