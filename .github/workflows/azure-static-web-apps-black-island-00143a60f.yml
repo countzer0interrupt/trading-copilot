@@ -1,4 +1,4 @@
-name: Deploy Trading Copilot
+name: Azure Static Web Apps CI/CD
 
 on:
   push:
