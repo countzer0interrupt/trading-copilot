@@ -36,7 +36,7 @@ app.http("proxy", {
           "Content-Type": "application/json",
           "x-api-key": apiKey,
           "anthropic-version": "2023-06-01",
-          "anthropic-beta": "mcp-client-2025-04-04",
+          "anthropic-beta": "mcp-client-2025-04-04,prompt-caching-2024-07-31",
         },
         body: JSON.stringify(body),
       });

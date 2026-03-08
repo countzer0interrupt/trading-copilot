@@ -82,7 +82,13 @@ async function callClaude(messages, systemSuffix = "") {
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
       max_tokens: 1000,
-      system: SYSTEM_PROMPT + systemSuffix,
+      system: [
+        {
+          type: "text",
+          text: SYSTEM_PROMPT + systemSuffix,
+          cache_control: { type: "ephemeral" }
+        }
+      ],
       messages,
       mcp_servers: [MCP_SERVER],
     }),
