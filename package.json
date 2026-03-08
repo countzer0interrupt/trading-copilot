@@ -1,11 +1,12 @@
+
 {
   "name": "trading-copilot",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "npx vite build",
-    "preview": "npx vite preview"
+    "dev": "node_modules/.bin/vite",
+    "build": "node_modules/.bin/vite build",
+    "preview": "node_modules/.bin/vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",
