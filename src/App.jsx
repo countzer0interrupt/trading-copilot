@@ -76,6 +76,8 @@ const GlobalStyle = () => (
 
 // ── API CALL ───────────────────────────────────────────────────────────────
 async function callClaude(messages, systemSuffix = "") {
+  // Keep only last 6 messages to prevent context bloat from MCP tool results
+  const trimmedMessages = messages.slice(-6);
   const res = await fetch("/api/proxy", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -89,7 +91,7 @@ async function callClaude(messages, systemSuffix = "") {
           cache_control: { type: "ephemeral" }
         }
       ],
-      messages,
+      messages: trimmedMessages,
       mcp_servers: [MCP_SERVER],
     }),
   });
