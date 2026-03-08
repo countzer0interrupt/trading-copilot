@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const PROXY_URL = "https://trading-copilot-api-cjfaa8debddtdfar.eastus-01.azurewebsites.net/api/proxy";
-
+const PROXY_URL = "https://trading-copilot-win.azurewebsites.net/api/proxy";
 const MCP_SERVER = {
-  type: "url",
+type: "url",
   url: "https://bcmcp.freewheel.com",
   name: "BWFW",
   tool_configuration: {
@@ -384,3 +383,4 @@ export default function App() {
   if (view==="menu") return <WelcomeMenu session={session} onSelect={handleSelect} onSignOut={handleSignOut}/>;
   return <Chat session={session} initialPrompt={initialPrompt} onMenu={handleMenu} onSignOut={handleSignOut}/>;
 }
+
