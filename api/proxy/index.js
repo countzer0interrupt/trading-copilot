@@ -1,4 +1,3 @@
-
 const { app } = require("@azure/functions");
 
 app.http("proxy", {
@@ -29,7 +28,6 @@ app.http("proxy", {
         };
       }
 
-      // Use streaming to avoid Azure timeout on long Anthropic calls
       const response = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
         headers: {
@@ -38,28 +36,17 @@ app.http("proxy", {
           "anthropic-version": "2023-06-01",
           "anthropic-beta": "mcp-client-2025-04-04,prompt-caching-2024-07-31",
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify({ ...body, stream: false }),
       });
 
-      if (!response.ok) {
-        const errData = await response.json();
-        return {
-          status: response.status,
-          body: JSON.stringify(errData),
-          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-        };
-      }
+      const data = await response.json();
 
-      // Stream the response back to keep the connection alive
-      const readable = response.body;
       return {
-        status: 200,
-        body: readable,
+        status: response.status,
+        body: JSON.stringify(data),
         headers: {
-          "Content-Type": "text/event-stream",
+          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          "Cache-Control": "no-cache",
-          "X-Accel-Buffering": "no",
         },
       };
     } catch (err) {
