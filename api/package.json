@@ -1,0 +1,9 @@
+{
+  "name": "trading-copilot-api",
+  "version": "1.0.0",
+  "description": "Azure Functions proxy for Anthropic API",
+  "main": "proxy/index.js",
+  "dependencies": {
+    "@azure/functions": "^4.0.0"
+  }
+}
