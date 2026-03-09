@@ -126,7 +126,7 @@ async function callClaude(messages, systemSuffix = "") {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
-      max_tokens: 1000,
+      max_tokens: 8000,
       system: [
         {
           type: "text",
