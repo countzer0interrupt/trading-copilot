@@ -17,3 +17,4 @@
     "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; font-src https://api.fontshare.com; connect-src 'self' https://api.anthropic.com https://bcmcp.freewheel.com https://trading-copilot-win.azurewebsites.net; img-src 'self' data:"
   }
 }
+
