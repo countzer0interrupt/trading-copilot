@@ -1,6 +1,7 @@
 {
   "navigationFallback": {
-    "rewrite": "/index.html"
+    "rewrite": "/index.html",
+    "exclude": ["/assets/*", "*.js", "*.css", "*.svg", "*.png", "*.woff2"]
   },
   "mimeTypes": {
     ".js": "application/javascript",
@@ -13,6 +14,6 @@
     ".woff2": "font/woff2"
   },
   "globalHeaders": {
-    "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; font-src https://api.fontshare.com; connect-src 'self' https://api.anthropic.com https://bcmcp.freewheel.com; img-src 'self' data:"
+    "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; font-src https://api.fontshare.com; connect-src 'self' https://api.anthropic.com https://bcmcp.freewheel.com https://trading-copilot-win.azurewebsites.net; img-src 'self' data:"
   }
 }
